@@ -13,7 +13,8 @@ import { GreetingComponent } from './pages/greeting/greeting.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 // Services
-import { Auth } from './shared/services/auth';
+import { AuthService } from './shared/services/auth.service';
+import { UserService } from './shared/services/user.service';
 
 // AngularFire
 import { AngularFireModule } from '@angular/fire';
@@ -59,21 +60,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-
-    // Angular material
-    // MatInputModule,
-    // MatFormFieldModule,
-    // MatButtonModule,
-    // MatIconModule,
-   // NgBootstrap
+    // Ng-bootstrap:
     NgbModule,
-    // AngularFire
+    // AngularFire:
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
 
   ],
-  providers: [Auth],
+  providers: [AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

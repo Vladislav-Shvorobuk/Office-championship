@@ -1,6 +1,6 @@
 import {OnInit, Component} from '@angular/core';
 import {Validators, FormGroup, FormBuilder} from '@angular/forms';
-import {Auth} from '../../shared/services/auth';
+import {AuthService} from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,12 +11,12 @@ export class SignInComponent implements OnInit {
   public signInFormGroup: FormGroup;
   public submitted = false;
 
-  constructor(private fb: FormBuilder, private signInService: Auth) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.signInFormGroup = this.createSignInFormGroup();
-    console.log('sign-in');
+    console.info('INFO: sign-in/component');
   }
 
   createSignInFormGroup() {
@@ -37,21 +37,18 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    console.log(this.signInFormGroup.controls);
-    // stop here if form is invalid
     if (this.signInFormGroup.invalid) {
       return;
     }
+    const { email, password }  = this.signInFormGroup.controls;
+    this.authService.signIn( email.value, password.value );
   }
 
   register() {
-    this.submitted = true;
-    // stop here if form is invalid
     if (this.signInFormGroup.invalid) {
       return;
     }
-    this.signInService.registerUser( this.signInFormGroup.controls).subscribe(data => {
-      console.log('data.user) ', data.user);
-    });
+    const { email, password  } = this.signInFormGroup.controls;
+    this.authService.registerUser( email.value, password.value );
   }
 }

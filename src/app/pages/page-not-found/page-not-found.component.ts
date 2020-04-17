@@ -8,11 +8,10 @@ import { Location } from '@angular/common';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor(
-    private location: Location
-  ) { }
+  constructor( private location: Location ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    console.info('INFO: page-not-found/component');
   }
   goBack() {
     this.location.back();
