@@ -1,0 +1,40 @@
+<section class="sign-in-container">
+  <picture class="label">
+    <img src="/../../assets/images/officeWorkout.png" alt="officeWorkout">
+  </picture>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="signInFormGroup" class="sign-in form-wrapper">
+    <label class="input-label label-email" for="email">
+      <input id="email" formControlName="email" placeholder="Email">
+      <div
+        [ngClass]="{
+          'info-icon': true,
+          'invalid': signInFormGroup.controls.email.errors && signInFormGroup.controls.email.dirty,
+          'valid': !signInFormGroup.controls.email.errors && signInFormGroup.controls.email.dirty}">
+        <span>ℹ</span>
+        <!-- <div *ngIf="signInFormGroup.controls.email.errors"> -->
+        <!-- <div *ngIf="signInFormGroup.controls.email.errors.required">Email is required</div>
+      </div>   -->
+      </div>
+    </label>
+    <label class="input-label label-password" for="email">
+      <input formControlName="password" type="password" placeholder="Password">
+      <div
+        [ngClass]="{
+          'info-icon': true,
+          'invalid': signInFormGroup.controls.password.errors && signInFormGroup.controls.password.dirty,
+          'valid': !signInFormGroup.controls.password.errors && signInFormGroup.controls.password.dirty }">
+        <span>ℹ</span>
+        <!-- <div *ngIf="signInFormGroup.controls.password.errors">
+          <div *ngIf="signInFormGroup.controls.password.errors.required">Password is required</div>
+        </div> -->
+      </div>
+    </label>
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary" (click)="register()">Registration</button>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+    <p>Forgot your password?</p>
+  </form>
+
+</section>

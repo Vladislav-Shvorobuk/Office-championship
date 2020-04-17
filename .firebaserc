@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "office-championship": {
+      "hosting": {
+        "Office-championship": [
+          "office-championship"
+        ]
+      }
+    }
+  }
+}

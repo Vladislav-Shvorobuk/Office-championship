@@ -1,0 +1,14 @@
+@import "reset";
+@import "variables.scss";
+@import "mixins.scss";
+
+
+html, body { 
+  height: 100%; 
+
+}
+body { 
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+  font-size: $mainTextSize;
+  box-sizing: border-box;
+}
