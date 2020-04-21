@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 // Services
 import { AuthService } from './shared/services/auth.service';
+import { ValidationService } from './shared/services/validation.service';
 import { UserService } from './shared/services/user.service';
 
 // AngularFire
@@ -45,7 +46,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +53,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SignInComponent,
     FooterComponent,
     PageNotFoundComponent,
-    SignUpComponent
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,9 +67,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-
   ],
-  providers: [AuthService, UserService],
-  bootstrap: [AppComponent]
+  providers: [AuthService, ValidationService, UserService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

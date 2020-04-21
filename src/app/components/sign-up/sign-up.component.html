@@ -1,4 +1,49 @@
-<p>sign-up works!</p>
-<p>sign-up works!</p>
-<p>sign-up works!</p>
-<p>sign-up works!</p>
+<section class="main-container">
+  <picture class="label">
+    <img src="/../../assets/images/officeWorkout.png" alt="officeWorkout">
+  </picture>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="signUpFormGroup" class="sign-in form-wrapper">
+    <label class="input-label label-email" for="email">
+      <input id="email" formControlName="email" placeholder="Email">
+      <div
+        [ngClass]="{
+          'info-icon': true,
+          'invalid': signUpFormGroup.controls.email.errors && signUpFormGroup.controls.email.dirty,
+          'valid': !signUpFormGroup.controls.email.errors && signUpFormGroup.controls.email.dirty}"
+        [autoClose]="'true'"
+        ngbTooltip="{{ getErrorMessage('email', this.signUpFormGroup) }}">
+        <span>ℹ</span>
+      </div>
+    </label>
+    <label class="input-label label-password" for="email">
+      <input formControlName="password" type="password" placeholder="Password">
+      <div
+        [ngClass]="{
+          'info-icon': true,
+          'invalid': signUpFormGroup.controls.password.errors && signUpFormGroup.controls.password.dirty,
+          'valid': !signUpFormGroup.controls.password.errors && signUpFormGroup.controls.password.dirty }"
+        [autoClose]="'true'"
+        ngbTooltip="{{ getErrorMessage('password', this.signUpFormGroup) }}">
+        <span>ℹ</span>
+      </div>
+    </label>
+    <label class="input-label label-name" for="name">
+      <input id="name" formControlName="name" placeholder="Name">
+      <div
+        [ngClass]="{
+          'info-icon': true,
+          'invalid': signUpFormGroup.controls.name.errors && signUpFormGroup.controls.name.dirty,
+          'valid': !signUpFormGroup.controls.name.errors && signUpFormGroup.controls.name.dirty}"
+        [autoClose]="'true'"
+        ngbTooltip="{{ getErrorMessage('name', this.signUpFormGroup) }}">
+        <span>ℹ</span>
+      </div>
+    </label>
+    <div class="btn-group">
+      <button type="submit" class="btn btn-primary">Registration</button>
+      <button type="button" class="btn btn-secondary" (click)="goToSignIn()">Sign in</button>
+    </div>
+  </form>
+
+</section>
