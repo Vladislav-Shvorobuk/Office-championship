@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { GreetingComponent } from './pages/greeting/greeting.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
@@ -20,7 +21,6 @@ import { UserService } from './shared/services/user.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
 
 // import { LayoutModule } from '@angular/cdk/layout';
 
@@ -52,7 +52,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     GreetingComponent,
     SignInComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

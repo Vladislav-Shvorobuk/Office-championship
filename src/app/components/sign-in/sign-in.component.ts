@@ -1,18 +1,22 @@
-import {OnInit, Component} from '@angular/core';
-import {Validators, FormGroup, FormBuilder} from '@angular/forms';
-import {AuthService} from '../../shared/services/auth.service';
+import { OnInit, Component } from '@angular/core';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
   public signInFormGroup: FormGroup;
   public submitted = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
-  }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.signInFormGroup = this.createSignInFormGroup();
@@ -21,16 +25,16 @@ export class SignInComponent implements OnInit {
 
   createSignInFormGroup() {
     return this.fb.group({
-      email: ['', [
-        Validators.required,
-        Validators.email
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(16),
-        Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}/)
-      ]]
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(16),
+          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}/),
+        ],
+      ],
     });
   }
 
@@ -40,15 +44,11 @@ export class SignInComponent implements OnInit {
     if (this.signInFormGroup.invalid) {
       return;
     }
-    const { email, password }  = this.signInFormGroup.controls;
-    this.authService.signIn( email.value, password.value );
+    const { email, password } = this.signInFormGroup.controls;
+    this.authService.signIn(email.value, password.value);
   }
 
-  register() {
-    if (this.signInFormGroup.invalid) {
-      return;
-    }
-    const { email, password  } = this.signInFormGroup.controls;
-    this.authService.registerUser( email.value, password.value );
+  goToRegistration() {
+    this.router.navigate(['/greeting/sign-up']);
   }
 }

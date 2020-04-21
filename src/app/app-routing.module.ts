@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { GreetingComponent } from './pages/greeting/greeting.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -12,23 +12,29 @@ const routes: Routes = [
     children: [
       {
         path: 'sign-in',
-        component: SignInComponent
-      }
-    ]
+        component: SignInComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'sign-up',
+        component: SignUpComponent,
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
-    redirectTo: '/greeting',
-    pathMatch: 'full'
+    redirectTo: '/greeting/sign-in',
+    pathMatch: 'full',
   },
   {
     path: '**',
-    component: PageNotFoundComponent
-  }
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
