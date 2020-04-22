@@ -30,7 +30,9 @@
     </label>
     <div class="btn-group">
       <button type="button" class="btn btn-secondary" (click)="goToRegistration()">Registration</button>
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-primary" triggers="click:blur" [autoClose]="'true'"
+              ngbTooltip="{{ signInFormGroup.invalid ? 'Please, fill in and check fields.' : '' }}">Sign in
+      </button>
     </div>
     <p>Forgot your password?</p>
   </form>

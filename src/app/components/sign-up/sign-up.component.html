@@ -41,7 +41,9 @@
       </div>
     </label>
     <div class="btn-group">
-      <button type="submit" class="btn btn-primary">Registration</button>
+      <button type="submit" class="btn btn-primary" triggers="click:blur"
+              ngbTooltip="{{ signUpFormGroup.invalid ? 'Please, fill in and check fields.' : '' }}">Registration
+      </button>
       <button type="button" class="btn btn-secondary" (click)="goToSignIn()">Sign in</button>
     </div>
   </form>

@@ -22,8 +22,8 @@ export class SignInComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.signInFormGroup = this.createSignInFormGroup();
     console.info('INFO: sign-in/component');
+    this.signInFormGroup = this.createSignInFormGroup();
     this.getErrorMessage = this.validationService.getErrorMessage;
   }
 
@@ -43,13 +43,18 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
-
     if (this.signInFormGroup.invalid) {
       return;
     }
     const { email, password } = this.signInFormGroup.controls;
     this.authService.signIn(email.value, password.value);
+
+    if (!this.authService.userNotFound) {
+      this.signInFormGroup.controls.email.setErrors({ userNotFound: true });
+    }
+    if (!this.authService.wrongPassword) {
+      this.signInFormGroup.controls.password.setErrors({ wrongPassword: true });
+    }
   }
 
   goToRegistration() {

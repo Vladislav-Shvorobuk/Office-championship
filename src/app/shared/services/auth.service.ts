@@ -6,6 +6,8 @@ import { from } from 'rxjs';
 export class AuthService {
   private _uid: string;
   private _isEmailExist: boolean;
+  private _userNotFound: boolean;
+  private _wrongPassword: boolean;
 
   constructor(private afAuth: AngularFireAuth) {}
 
@@ -19,13 +21,23 @@ export class AuthService {
     from(this.afAuth.createUserWithEmailAndPassword(email, password)).subscribe(
       (data) => {
         this._isEmailExist = false;
+        this._userNotFound = false;
+        this._wrongPassword = false;
         this._uid = data.user.uid;
       },
       (error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          this._isEmailExist = true;
-        } else {
-          console.info('error', error);
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            this._isEmailExist = true;
+            break;
+          case 'auth/user-not-found':
+            this._userNotFound = true;
+            break;
+          case 'auth/wrong-password':
+            this._wrongPassword = true;
+            break;
+          default:
+            console.info('error', error);
         }
       }
     );
@@ -34,16 +46,16 @@ export class AuthService {
   get uid(): string {
     return this._uid;
   }
-
   set uid(value: string) {
     this._uid = value;
   }
-
   get isEmailExist(): boolean {
     return this._isEmailExist;
   }
-
-  set isEmailExist(value: boolean) {
-    this._isEmailExist = value;
+  get userNotFound(): boolean {
+    return this._userNotFound;
+  }
+  get wrongPassword(): boolean {
+    return this._wrongPassword;
   }
 }

@@ -32,6 +32,14 @@ export class ValidationService {
           errorMessage = `Not Unique, already exist`;
           break;
         }
+        case !!formGroup.controls[inputName].errors.userNotFound: {
+          errorMessage = `User not found`;
+          break;
+        }
+        case !!formGroup.controls[inputName].errors.wrongPassword: {
+          errorMessage = `Wrong password`;
+          break;
+        }
         case !!formGroup.controls[inputName].errors.pattern: {
           errorMessage = `Password must contain lower-case, upper-case and numeric characters`;
           break;
