@@ -16,7 +16,6 @@ export class ValidationService {
           errorMessage = 'This field is required.';
           break;
         case !!formGroup.controls[inputName].errors.email:
-          console.log(formGroup.controls[inputName].errors.email);
           errorMessage = 'eg: example@gmail.com';
           break;
         case !!formGroup.controls[inputName].errors.minlength: {

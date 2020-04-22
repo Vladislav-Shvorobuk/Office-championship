@@ -2,6 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import {ValidationService} from '../../shared/services/validation.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,17 +11,20 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
   public signInFormGroup: FormGroup;
+  public getErrorMessage;
   public submitted = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private validationService: ValidationService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.signInFormGroup = this.createSignInFormGroup();
     console.info('INFO: sign-in/component');
+    this.getErrorMessage = this.validationService.getErrorMessage;
   }
 
   createSignInFormGroup() {

@@ -10,7 +10,9 @@
         [ngClass]="{
           'info-icon': true,
           'invalid': signInFormGroup.controls.email.errors && signInFormGroup.controls.email.dirty,
-          'valid': !signInFormGroup.controls.email.errors && signInFormGroup.controls.email.dirty}">
+          'valid': !signInFormGroup.controls.email.errors && signInFormGroup.controls.email.dirty}"
+        [autoClose]="'true'"
+        ngbTooltip="{{ getErrorMessage('email', this.signInFormGroup) }}">
         <span>ℹ</span>
       </div>
     </label>
@@ -20,7 +22,9 @@
         [ngClass]="{
           'info-icon': true,
           'invalid': signInFormGroup.controls.password.errors && signInFormGroup.controls.password.dirty,
-          'valid': !signInFormGroup.controls.password.errors && signInFormGroup.controls.password.dirty }">
+          'valid': !signInFormGroup.controls.password.errors && signInFormGroup.controls.password.dirty }"
+        [autoClose]="'true'"
+        ngbTooltip="{{ getErrorMessage('password', this.signInFormGroup) }}">
         <span>ℹ</span>
       </div>
     </label>
