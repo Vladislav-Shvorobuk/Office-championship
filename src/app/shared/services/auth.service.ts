@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { from } from 'rxjs';
+import { auth } from 'firebase';
 
 @Injectable()
 export class AuthService {
@@ -41,6 +42,27 @@ export class AuthService {
         }
       }
     );
+  }
+
+  // Sign in with Facebook
+  signInWithFacebook() {
+    const provider = new auth.FacebookAuthProvider();
+
+    return this.afAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        // must be redirect to some page
+        const token = (result.credential as auth.OAuthCredential).accessToken;
+        const user = result.user;
+        console.info('You have been successfully logged in!', result);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = error.credential;
+        console.info(error);
+      });
   }
 
   get uid(): string {
