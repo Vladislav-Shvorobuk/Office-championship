@@ -44,8 +44,8 @@
       <button type="submit" class="btn btn-primary" triggers="click:blur"
               ngbTooltip="{{ signUpFormGroup.invalid ? 'Please, fill in and check fields.' : '' }}">Registration
       </button>
-      <button type="button" class="btn btn-secondary" (click)="goToSignIn()">Sign in</button>
     </div>
+    <p (click)="goToSignIn()"> Return to sign in page</p>
   </form>
 
 </section>
