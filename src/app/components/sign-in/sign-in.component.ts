@@ -2,7 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
-import {ValidationService} from '../../shared/services/validation.service';
+import { ValidationService } from '../../shared/services/validation.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +12,6 @@ import {ValidationService} from '../../shared/services/validation.service';
 export class SignInComponent implements OnInit {
   public signInFormGroup: FormGroup;
   public getErrorMessage;
-  public submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -47,14 +46,7 @@ export class SignInComponent implements OnInit {
       return;
     }
     const { email, password } = this.signInFormGroup.controls;
-    this.authService.signIn(email.value, password.value);
-
-    if (!this.authService.userNotFound) {
-      this.signInFormGroup.controls.email.setErrors({ userNotFound: true });
-    }
-    if (!this.authService.wrongPassword) {
-      this.signInFormGroup.controls.password.setErrors({ wrongPassword: true });
-    }
+    this.authService.signIn(email.value, password.value, this.signInFormGroup);
   }
 
   goToRegistration() {

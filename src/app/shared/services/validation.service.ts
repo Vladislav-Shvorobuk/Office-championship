@@ -2,8 +2,26 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ValidationService {
+  constructor() {}
 
-  constructor() { }
+  setFormControlError(error, formGroup) {
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        formGroup.controls.email.setErrors({ notUnique: true });
+        break;
+      case 'auth/user-not-found':
+        formGroup.controls.email.setErrors({ userNotFound: true });
+        break;
+      case 'auth/wrong-password':
+        formGroup.controls.password.setErrors({ wrongPassword: true });
+        break;
+      case 'auth/too-many-requests':
+        formGroup.controls.password.setErrors({ tooManyRequests: true });
+        break;
+      default:
+        console.info('Not known error: ', error);
+    }
+  }
 
   getErrorMessage(inputName, formGroup) {
     let errorMessage = '';
@@ -19,7 +37,7 @@ export class ValidationService {
           errorMessage = 'eg: example@gmail.com';
           break;
         case !!formGroup.controls[inputName].errors.minlength: {
-          const length = formGroup.controls[inputName].errors.minlength.requiredLength;
+          const length =  formGroup.controls[inputName].errors.minlength.requiredLength;
           errorMessage = `Too short, required min length - ${length}`;
           break;
         }
@@ -40,6 +58,10 @@ export class ValidationService {
           errorMessage = `Wrong password`;
           break;
         }
+        case !!formGroup.controls[inputName].errors._tooManyRequests: {
+          errorMessage = `Too many requests, try later please`;
+          break;
+        }
         case !!formGroup.controls[inputName].errors.pattern: {
           errorMessage = `Password must contain lower-case, upper-case and numeric characters`;
           break;
@@ -47,8 +69,7 @@ export class ValidationService {
         default:
           errorMessage = '';
       }
-
-      return errorMessage;
     }
+    return errorMessage;
   }
 }

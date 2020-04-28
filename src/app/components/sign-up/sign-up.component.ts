@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
-import {ValidationService} from '../../shared/services/validation.service';
+import { ValidationService } from '../../shared/services/validation.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -54,12 +54,9 @@ export class SignUpComponent implements OnInit {
       return;
     }
     const { email, password } = this.signUpFormGroup.controls;
-    this.authService.registerUser(email.value, password.value);
-
-    if (!this.authService.isEmailExist) {
-      this.signUpFormGroup.controls.email.setErrors({ notUnique: true });
-    }
+    this.authService.registerUser(email.value, password.value, this.signUpFormGroup);
   }
+
   goToSignIn() {
     this.router.navigate(['/greeting/sign-in']);
   }
