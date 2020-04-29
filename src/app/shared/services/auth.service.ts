@@ -4,6 +4,7 @@ import { from } from 'rxjs';
 import { auth } from 'firebase';
 import { FormGroup } from '@angular/forms';
 import { ValidationService } from './validation.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,8 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private router: Router
   ) {}
 
   signIn(email: string, password: string, formGroup: FormGroup): void {
@@ -26,12 +28,15 @@ export class AuthService {
         this._wrongPassword = false;
         this._tooManyRequests = false;
         this._uid = data?.user.uid;
+        console.info('You have been successfully logged in!');
+        this.router.navigate(['/office-workout']);
       },
       (error) => {
         this.validationService.setFormControlError(error, formGroup);
       }
     );
   }
+
   registerUser(email: string, password: string, formGroup: FormGroup): void {
     from(this.afAuth.createUserWithEmailAndPassword(email, password)).subscribe(
       (data) => {
@@ -56,7 +61,8 @@ export class AuthService {
         // must be redirect to some page
         const token = (result.credential as auth.OAuthCredential).accessToken;
         const user = result.user;
-        console.info('You have been successfully logged in!', result);
+        console.info('You have been successfully logged in!');
+        this.router.navigate(['/office-workout']);
       })
       .catch((error) => {
         // const errorCode = error.code;
@@ -70,18 +76,23 @@ export class AuthService {
   get uid(): string {
     return this._uid;
   }
+
   set uid(value: string) {
     this._uid = value;
   }
+
   get isEmailExist(): boolean {
     return this._isEmailExist;
   }
+
   get userNotFound(): boolean {
     return this._userNotFound;
   }
+
   get wrongPassword(): boolean {
     return this._wrongPassword;
   }
+
   get tooManyRequests(): boolean {
     return this._tooManyRequests;
   }

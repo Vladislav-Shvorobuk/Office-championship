@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
+import { MajorModule } from './pages/major/major.module';
 // Components
 import { AppComponent } from './app.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -23,6 +24,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+// Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { LayoutModule } from '@angular/cdk/layout';
 
 //
@@ -43,8 +46,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // import { MatNativeDateModule } from '@angular/material';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+
+    MajorModule,
   ],
   providers: [AuthService, ValidationService, UserService],
   bootstrap: [AppComponent],

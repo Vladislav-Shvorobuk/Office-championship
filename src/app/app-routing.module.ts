@@ -23,6 +23,10 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'office-workout',
+    loadChildren: () => import('./pages/major/major.module').then(m => m.MajorModule),
+  },
+  {
     path: '',
     redirectTo: '/greeting/sign-in',
     pathMatch: 'full',
