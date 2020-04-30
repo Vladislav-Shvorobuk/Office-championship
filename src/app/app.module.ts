@@ -7,12 +7,12 @@ import { environment } from '../environments/environment';
 // Modules
 import { AppRoutingModule } from './app-routing.module';
 import { MajorModule } from './pages/major/major.module';
+import { SharedModule } from './shared/modules/shared.module';
 // Components
 import { AppComponent } from './app.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { GreetingComponent } from './pages/greeting/greeting.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 // Services
 import { AuthService } from './shared/services/auth.service';
@@ -52,7 +52,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     GreetingComponent,
     SignInComponent,
-    FooterComponent,
     PageNotFoundComponent,
     SignUpComponent,
   ],
@@ -69,6 +68,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFirestoreModule,
     AngularFireAuthModule,
 
+    SharedModule,
     MajorModule,
   ],
   providers: [AuthService, ValidationService, UserService],
