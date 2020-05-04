@@ -3,10 +3,10 @@
 
 :host {
     display: flex;
-    background: $greetingPageBackground;
-    color: $greetingPageColor;
+    background: $mainBackgroundColor;
+    color: $mainColor;
     font-size: $mainTextSize - 2;
     width: 100%;
     height: 100%;
-    padding: 0 30px;
+    padding: 0 10%;
 }

@@ -1,1 +1,21 @@
-<p>header works!</p>
+<div class="home-link-wrapper">
+  <a class="home-link" href="/office-workout">OFFICE-WORKOUT</a>
+</div>
+<nav>
+  <ul ngbNav #nav="ngbNav" class="nav-pills">
+    <li ngbNavItem>
+      <a ngbNavLink>STANDINGS</a>
+<!--      <ng-template ngbNavContent>First content</ng-template>-->
+    </li>
+    <li ngbNavItem ngbDropdown>
+      <a href (click)="false" ngbNavLink ngbDropdownToggle>PROFILE</a>
+      <div ngbDropdownMenu>
+        <button ngbDropdownItem>Settings</button>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem>Log out</button>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+
