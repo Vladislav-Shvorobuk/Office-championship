@@ -2,14 +2,19 @@
   <a class="home-link" href="/office-workout">OFFICE-WORKOUT</a>
 </div>
 <nav>
-  <ul ngbNav #nav="ngbNav" class="nav-pills">
-    <li ngbNavItem>
-      <a ngbNavLink>STANDINGS</a>
-<!--      <ng-template ngbNavContent>First content</ng-template>-->
+  <ul ngbNav class="nav-pills">
+    <li ngbNavItem ngbDropdown>
+      <a href (click)="false" ngbNavLink ngbDropdownToggle>STANDINGS</a>
+      <div ngbDropdownMenu>
+        <button ngbDropdownItem class="apply-link-button">Apply link <sup>0</sup></button>
+        <button ngbDropdownItem>Create new</button>
+        <button ngbDropdownItem></button>
+      </div>
     </li>
     <li ngbNavItem ngbDropdown>
       <a href (click)="false" ngbNavLink ngbDropdownToggle>PROFILE</a>
       <div ngbDropdownMenu>
+        <button ngbDropdownItem>Edit Profile</button>
         <button ngbDropdownItem>Settings</button>
         <div class="dropdown-divider"></div>
         <button ngbDropdownItem>Log out</button>

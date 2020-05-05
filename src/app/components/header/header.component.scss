@@ -18,6 +18,17 @@
   nav {
     display: flex;
     justify-content: flex-end;
+
+    ul {
+      li {
+        div {
+          .apply-link-button {
+            color: blue;
+            font-size: 10px;
+          }
+        }
+      }
+    }
   }
 
 }
