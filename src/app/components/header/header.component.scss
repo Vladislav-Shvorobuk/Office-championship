@@ -1,4 +1,4 @@
-@import 'src/assets/styles/_variables.scss';
+@import "src/assets/styles/_variables.scss";
 
 :host {
   display: flex;
@@ -23,12 +23,13 @@
       li {
         div {
           .apply-link-button {
-            color: blue;
-            font-size: 10px;
+            sup {
+              color: blue;
+              font-size: 10px;
+            }
           }
         }
       }
     }
   }
-
 }

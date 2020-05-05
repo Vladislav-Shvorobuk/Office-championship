@@ -4,6 +4,8 @@ import { MajorComponent } from './major.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/modules/shared.module';
 import { HeaderComponent } from '../../components/header/header.component';
+import {StandingModalComponent} from '../../components/standing-modal/standing-modal.component';
+import {ApplyLinkModalComponent} from '../../components/apply-link-modal/apply-link-modal.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MajorComponent, HeaderComponent],
+  declarations: [
+    MajorComponent,
+    HeaderComponent,
+    StandingModalComponent,
+    ApplyLinkModalComponent,
+  ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })

@@ -10,7 +10,7 @@ export class FooterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.info('INFO: major/component');
+    console.info('INFO: footer/component');
   }
 
 }

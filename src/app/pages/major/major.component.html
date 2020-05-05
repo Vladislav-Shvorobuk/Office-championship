@@ -2,13 +2,19 @@
   <app-header></app-header>
 </header>
 <main>
+
   <section class="greeting-content-wrapper">
-    <h2>Your don't have any own standings or applied links. Do your want to create new standings ?</h2>
+    <h2>Your don't have any own standings or applied links. Do your want to create new standing ?</h2>
     <div class="btn-group" role="group" aria-label="Buttons group">
-      <button type="button" class="btn btn-outline-primary">CREATE STANDINGS</button>
-      <button type="button" class="btn btn-outline-primary">APPLY LINK</button>
+      <button type="button" class="btn btn-outline-primary" (click)="open('standing')">CREATE STANDINGS
+      </button>
+      <button type="button" class="btn btn-outline-primary" (click)="open('applyLink')">APPLY LINK</button>
     </div>
   </section>
+
+  <app-standing-modal></app-standing-modal>
+  <app-apply-link-modal></app-apply-link-modal>
+
 </main>
 <footer>
   <app-footer></app-footer>
