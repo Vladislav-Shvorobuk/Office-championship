@@ -73,6 +73,16 @@ export class AuthService {
       });
   }
 
+  signOut() {
+    this.afAuth.signOut()
+      .then((res) => {
+        this.router.navigate(['/greeting/sign-in']);
+      })
+      .catch((error) => {
+        console.info('Ooops..., something went wrong: ', error);
+      });
+  }
+
   get uid(): string {
     return this._uid;
   }
