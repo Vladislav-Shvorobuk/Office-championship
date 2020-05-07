@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { from } from 'rxjs';
-import { auth } from 'firebase';
+import { from, Observable } from 'rxjs';
+import { auth, User } from 'firebase';
 import { FormGroup } from '@angular/forms';
 import { ValidationService } from './validation.service';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -52,7 +53,7 @@ export class AuthService {
   }
 
   // Sign in with Facebook
-  signInWithFacebook() {
+  signInWithFacebook(): Promise<void> {
     const provider = new auth.FacebookAuthProvider();
 
     return this.afAuth
@@ -73,7 +74,7 @@ export class AuthService {
       });
   }
 
-  signOut() {
+  signOut(): void {
     this.afAuth.signOut()
       .then((res) => {
         this.router.navigate(['/greeting/sign-in']);
@@ -81,6 +82,18 @@ export class AuthService {
       .catch((error) => {
         console.info('Ooops..., something went wrong: ', error);
       });
+  }
+
+  isUserLoggedIn(): Observable<boolean> {
+    return this.afAuth.authState.pipe(
+      map((user) => {
+        if (user) {
+          return true;
+        }
+        this.router.navigate(['/greeting/sign-in']);
+        return false;
+      })
+    );
   }
 
   get uid(): string {

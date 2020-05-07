@@ -4,6 +4,7 @@ import { GreetingComponent } from './pages/greeting/greeting.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'office-workout',
-    loadChildren: () => import('./pages/major/major.module').then(m => m.MajorModule),
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/major/major.module').then((m) => m.MajorModule),
   },
   {
     path: '',
